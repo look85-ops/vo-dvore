@@ -66,6 +66,12 @@
     text-wrap: balance;
   }
 
+  .hero h1#brand {
+    cursor: pointer;
+    user-select: none;
+    border-bottom: 2px dotted oklch(0.9 0.03 250 / 0.6);
+  }
+
   .hero .tagline {
     font-size: clamp(18px, 3.5vw, 26px);
     font-weight: 700;
@@ -380,7 +386,7 @@
 <!-- ===== HERO ===== -->
 <div class="hero">
   <div class="hero-content">
-    <h1>Во дворе</h1>
+    <h1 id="brand" title="Нажми — беларуская / русская">Во дворе</h1>
     <div class="tagline">Один телефон запускает игру для всей компании.</div>
     <div class="hero-cards">
       <a class="hero-card" href="#solo">
@@ -760,6 +766,15 @@
       var box = document.querySelector("[data-thanks]");
       box.style.display = "block";
     });
+  });
+
+  // Название-перевёртыш: Во дворе ↔ На двары
+  var brand = document.getElementById("brand");
+  var brandNames = ["Во дворе", "На двары"];
+  var brandIndex = 0;
+  brand.addEventListener("click", function () {
+    brandIndex = (brandIndex + 1) % brandNames.length;
+    brand.textContent = brandNames[brandIndex];
   });
 </script>
 </body>
