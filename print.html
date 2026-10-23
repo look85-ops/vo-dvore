@@ -22,107 +22,115 @@
     width: 210mm;
     height: 297mm;
     margin: 0 auto;
-    padding: 14mm 14mm 12mm;
+    padding: 12mm 12mm 12mm;
     display: flex;
     flex-direction: column;
-    gap: 8mm;
+    gap: 7mm;
     color: oklch(0.22 0.02 260);
-    position: relative;
     page-break-after: always;
     break-after: page;
   }
   .sheet:last-child { page-break-after: auto; break-after: auto; }
 
-  .sheet.accent-sky  { --accent: oklch(0.62 0.13 252); --on-accent: oklch(1 0 0); }
-  .sheet.accent-sun  { --accent: oklch(0.66 0.19 62);  --on-accent: oklch(0.22 0.02 260); }
-  .sheet.accent-grass{ --accent: oklch(0.54 0.14 138); --on-accent: oklch(1 0 0); }
+  .sheet.accent-sky  { --accent: oklch(0.62 0.13 252); }
+  .sheet.accent-sun  { --accent: oklch(0.66 0.19 62); }
+  .sheet.accent-grass{ --accent: oklch(0.54 0.14 138); }
 
-  /* Шапка-плашка */
+  /* Шапка: бренд мелко + призыв крупно */
   .head {
     background: var(--accent);
-    color: var(--on-accent);
+    color: oklch(0.22 0.02 260);
     border-radius: 14px;
-    padding: 11mm 12mm;
+    padding: 9mm 12mm;
   }
-  .head h1 {
-    font-size: 46px;
+  .head .brand {
+    font-size: 17px;
+    font-weight: 800;
+    opacity: 0.85;
+    letter-spacing: 0.01em;
+  }
+  .head .head-cta {
+    font-size: 36px;
     font-weight: 900;
     letter-spacing: -0.5px;
     line-height: 1.05;
+    margin-top: 1mm;
   }
 
-  /* Призыв — жёлтая плашка на небесном фоне */
-  .cta {
-    background: oklch(0.66 0.19 62);
-    color: oklch(0.22 0.02 260);
+  /* QR сразу после призыва */
+  .qr-block {
+    display: flex;
+    align-items: center;
+    gap: 8mm;
+  }
+  .qr {
+    width: 48mm;
+    height: 48mm;
+    background: oklch(1 0 0);
+    border: 3px solid var(--accent);
     border-radius: 12px;
-    padding: 8mm 12mm;
-    font-size: 26px;
+    padding: 2.5mm;
+    flex: 0 0 auto;
+  }
+  .qr img { width: 100%; height: 100%; display: block; }
+  .qr-label {
+    font-size: 14px;
     font-weight: 800;
-    text-align: center;
+    color: oklch(0.40 0.02 260);
   }
 
-  /* Cодержимое-карточки */
+  /* Карточки */
   .card {
     background: oklch(1 0 0);
     border-radius: 14px;
-    padding: 8mm 10mm;
-    box-shadow: 0 2px 8px oklch(0 0 0 / 0.05);
+    padding: 8mm 11mm;
   }
-  .card.why { background: oklch(0.80 0.08 140); }
-
   .card h2 {
-    font-size: 15px;
+    font-size: 17px;
     font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
     color: oklch(0.42 0.03 260);
     margin-bottom: 4mm;
   }
+  .card ul { list-style: none; }
+  .card li {
+    font-size: 15.5px;
+    font-weight: 700;
+    color: oklch(0.26 0.02 260);
+    line-height: 1.3;
+    padding-left: 7mm;
+    position: relative;
+    margin-bottom: 3.5mm;
+  }
+  .card li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 2.4mm;
+    width: 3.5mm;
+    height: 3.5mm;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+  .card li strong { font-weight: 900; }
+
+  .card.why { background: oklch(0.80 0.08 140); }
   .card.why h2 { color: oklch(0.38 0.05 140); }
-
-  .cards-row { display: flex; gap: 4mm; }
-  .cat { flex: 1; }
-  .cat .name { font-weight: 800; font-size: 14px; }
-  .cat .num  { font-weight: 600; font-size: 13px; color: oklch(0.45 0.02 260); }
-  .cat .bar { height: 3px; border-radius: 2px; margin-top: 2mm; }
-
-  .cat.sky  .bar { background: oklch(0.62 0.13 252); }
-  .cat.sun  .bar { background: oklch(0.66 0.19 62); }
-  .cat.grass.bar { background: oklch(0.54 0.14 138); }
-
-  .why p { font-size: 14px; font-weight: 700; color: oklch(0.28 0.04 140); }
+  .card.why p { font-size: 14.5px; font-weight: 700; color: oklch(0.26 0.04 140); }
 
   .trust {
-    font-size: 12px;
-    font-weight: 600;
-    color: oklch(0.45 0.02 260);
+    margin-top: auto;
+    font-size: 13.5px;
+    font-weight: 700;
+    color: oklch(0.40 0.02 260);
     text-align: center;
   }
-
-  /* QR внизу */
-  .qr-line {
-    margin-top: auto;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 6mm;
-  }
-  .qr-line .qr {
-    width: 52mm;
-    height: 52mm;
-    background: oklch(1 0 0);
-    border: 3px solid var(--accent);
-    border-radius: 10px;
-    padding: 3mm;
-  }
-  .qr-line .qr img { width: 100%; height: 100%; display: block; }
-  .qr-line .label {
-    font-size: 13px;
-    font-weight: 700;
-    color: oklch(0.45 0.02 260);
-    max-width: 70mm;
-    text-align: right;
+  .trust .age {
+    display: inline-block;
+    background: oklch(0.22 0.02 260);
+    color: oklch(1 0 0);
+    border-radius: 999px;
+    padding: 1mm 4mm;
+    font-weight: 800;
   }
 
   @media print {
@@ -134,83 +142,89 @@
 
   <!-- ===== Экземпляр 1 · небо ===== -->
   <div class="sheet accent-sky">
-    <div class="head"><h1>Во дворе</h1></div>
-    <div class="cta">Отсканируй и сыграй</div>
+    <div class="head">
+      <div class="brand">Во дворе</div>
+      <div class="head-cta">Отсканируй и сыграй</div>
+    </div>
+
+    <div class="qr-block">
+      <div class="qr"><img src="qr.png" alt="QR-код"></div>
+      <div class="qr-label">Площадка 1</div>
+    </div>
 
     <div class="card">
-      <h2>Что по ссылке</h2>
-      <div class="cards-row">
-        <div class="cat sky"><div class="name">Играю один</div><div class="num">2 игры</div><div class="bar"></div></div>
-        <div class="cat sun"><div class="name">Нас двое-трое</div><div class="num">3 игры</div><div class="bar"></div></div>
-        <div class="cat grass"><div class="name">Нас много</div><div class="num">2 игры</div><div class="bar"></div></div>
-      </div>
+      <h2>Игры, которые знали бабушки</h2>
+      <ul>
+        <li><strong>7 игр на любой состав</strong> — одному, вдвоём или всей площадкой.</li>
+        <li><strong>«Кто водит» — без споров:</strong> считалки уже внутри.</li>
+        <li><strong>Ничего скачивать не надо</strong> — открыл по QR, телефон в карман.</li>
+      </ul>
     </div>
 
     <div class="card why">
       <h2>Что мы хотим</h2>
-      <p>Вернуть двору роль места, где дети играют вместе, а не сидят каждый в своём телефоне.</p>
+      <p>Чтобы дети играли вместе во дворе, а не сидели каждый в своём телефоне.</p>
     </div>
 
-    <div class="trust">Бесплатно · Без регистрации · Не собираем данные · Для детей 5–12</div>
-
-    <div class="qr-line">
-      <div class="label">Площадка 1</div>
-      <div class="qr"><img src="qr.png" alt="QR-код"></div>
-    </div>
+    <div class="trust"><span class="age">Для детей 5–12</span> · Бесплатно · Без регистрации · Не собираем данные</div>
   </div>
 
   <!-- ===== Экземпляр 2 · солнце ===== -->
   <div class="sheet accent-sun">
-    <div class="head"><h1>Во дворе</h1></div>
-    <div class="cta">Отсканируй и сыграй</div>
+    <div class="head">
+      <div class="brand">Во дворе</div>
+      <div class="head-cta">Отсканируй и сыграй</div>
+    </div>
+
+    <div class="qr-block">
+      <div class="qr"><img src="qr-playground-2.png" alt="QR-код"></div>
+      <div class="qr-label">Площадка 2</div>
+    </div>
 
     <div class="card">
-      <h2>Что по ссылке</h2>
-      <div class="cards-row">
-        <div class="cat sky"><div class="name">Играю один</div><div class="num">2 игры</div><div class="bar"></div></div>
-        <div class="cat sun"><div class="name">Нас двое-трое</div><div class="num">3 игры</div><div class="bar"></div></div>
-        <div class="cat grass"><div class="name">Нас много</div><div class="num">2 игры</div><div class="bar"></div></div>
-      </div>
+      <h2>Игры, которые знали бабушки</h2>
+      <ul>
+        <li><strong>7 игр на любой состав</strong> — одному, вдвоём или всей площадкой.</li>
+        <li><strong>«Кто водит» — без споров:</strong> считалки уже внутри.</li>
+        <li><strong>Ничего скачивать не надо</strong> — открыл по QR, телефон в карман.</li>
+      </ul>
     </div>
 
     <div class="card why">
       <h2>Что мы хотим</h2>
-      <p>Вернуть двору роль места, где дети играют вместе, а не сидят каждый в своём телефоне.</p>
+      <p>Чтобы дети играли вместе во дворе, а не сидели каждый в своём телефоне.</p>
     </div>
 
-    <div class="trust">Бесплатно · Без регистрации · Не собираем данные · Для детей 5–12</div>
-
-    <div class="qr-line">
-      <div class="label">Площадка 2</div>
-      <div class="qr"><img src="qr-playground-2.png" alt="QR-код"></div>
-    </div>
+    <div class="trust"><span class="age">Для детей 5–12</span> · Бесплатно · Без регистрации · Не собираем данные</div>
   </div>
 
   <!-- ===== Экземпляр 3 · трава ===== -->
   <div class="sheet accent-grass">
-    <div class="head"><h1>Во дворе</h1></div>
-    <div class="cta">Отсканируй и сыграй</div>
+    <div class="head">
+      <div class="brand">Во дворе</div>
+      <div class="head-cta">Отсканируй и сыграй</div>
+    </div>
+
+    <div class="qr-block">
+      <div class="qr"><img src="qr-playground-3.png" alt="QR-код"></div>
+      <div class="qr-label">Площадка 3</div>
+    </div>
 
     <div class="card">
-      <h2>Что по ссылке</h2>
-      <div class="cards-row">
-        <div class="cat sky"><div class="name">Играю один</div><div class="num">2 игры</div><div class="bar"></div></div>
-        <div class="cat sun"><div class="name">Нас двое-трое</div><div class="num">3 игры</div><div class="bar"></div></div>
-        <div class="cat grass"><div class="name">Нас много</div><div class="num">2 игры</div><div class="bar"></div></div>
-      </div>
+      <h2>Игры, которые знали бабушки</h2>
+      <ul>
+        <li><strong>7 игр на любой состав</strong> — одному, вдвоём или всей площадкой.</li>
+        <li><strong>«Кто водит» — без споров:</strong> считалки уже внутри.</li>
+        <li><strong>Ничего скачивать не надо</strong> — открыл по QR, телефон в карман.</li>
+      </ul>
     </div>
 
     <div class="card why">
       <h2>Что мы хотим</h2>
-      <p>Вернуть двору роль места, где дети играют вместе, а не сидят каждый в своём телефоне.</p>
+      <p>Чтобы дети играли вместе во дворе, а не сидели каждый в своём телефоне.</p>
     </div>
 
-    <div class="trust">Бесплатно · Без регистрации · Не собираем данные · Для детей 5–12</div>
-
-    <div class="qr-line">
-      <div class="label">Площадка 3</div>
-      <div class="qr"><img src="qr-playground-3.png" alt="QR-код"></div>
-    </div>
+    <div class="trust"><span class="age">Для детей 5–12</span> · Бесплатно · Без регистрации · Не собираем данные</div>
   </div>
 
 </body>
